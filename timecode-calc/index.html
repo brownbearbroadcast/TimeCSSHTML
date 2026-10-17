@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Timecode Calculator</title>
+    <link rel="stylesheet" href="/timecode-calc/style.css">
+  </head>
+  <body>
+    <div>
+        <h1><a href="/timecode-calc">Timecode Calculator</a></h1>
+    </div>
+    <div>
+        <h2>Form</h2>
+        <input 
+        class="input"
+        id="start"
+        minlength="11"
+        maxlength="11"/>
+    </div>    
+    <p></p>
+    <div>
+      <!--<h2>End Timecode</h2>-->  
+        <input
+        class = "input"
+        id="end"
+        minlength="11"
+        maxlength="11"/>
+        <p></p>
+    </div>
+    <div><button class="btn-144" type = "button">Submit</button></div>
+
+    <script src="DropFrame.js"></script>
+    <script src="/timecode-calc/index.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/4.0.0/jquery.min.js"></script>
+    <script>
+      //obfuscation so the code is not 10 miles long
+      //sets start input box value from array
+      function setStartValue() {
+       $("#start").val(startValArr.join(""));
+      }
+      //sets end input box value from array
+      function setEndValue(){
+      $("#end").val(endValArr.join(""));
+      }
+      //this is a janky solution but I never claimed to be a front-end engineer
+      let startValArr = ['0' , '0' , ':' , '0' , '0' , ':' ,'0' , '0' , ';' ,'0', '0'];
+      let endValArr = ['0' , '0' , ':' , '0' , '0' , ':' ,'0' , '0' , ';' ,'0', '0'];
+      //lazyness
+      function goodInput(){
+         console.log("good input! :)");
+      }
+      //by default, caret goes to right. to keep same, insert index - 1.
+      function setStartCaret(index){
+        document.getElementById("start").setSelectionRange(index + 1 , index + 1);
+      }
+      function setEndCaret(index){
+        document.getElementById("end").setSelectionRange(index + 1 , index + 1);
+      }
+      //this can probs be 1 equation via obfuscation but just trying to make work right now.
+
+      document.getElementById("start").addEventListener("keydown", e => {
+        console.log("Carat at: ", e.target.selectionStart);
+        const index = e.target.selectionStart;
+        // arrays that define acceptable number inputs for differnt slots
+        //for the first hour mark & second mark, can only be 0, 1, or 2
+        let zOArr = ['0', '1', '2'];
+        // for the second hour mark, if first is 2, can only be 0, 1, 2, or 3
+        let zTArr = ['0' ,'1' ,'2', '3'];
+        //for the others, can be 0-9
+        let numArr = ['0' , '1' , '2' , '3' , '4' , '5' , '6' , '7', '8' , '9'];
+
+        // input validation for all 11 chars #sobbing-and/or-crying
+        switch (index){
+          case 0:
+            event.preventDefault();
+            if (zOArr.includes(e.key) ){
+              console.log("good input!");
+              // set value to pressed key
+              startValArr[0] = e.key;
+              // if value is 2, then next get zero'd out if not 0, 1, 2, or 3.
+              if (e.key == '2' && (!(zTArr.includes(startValArr[1])))){
+                startValArr[1] = '0';
+              }
+              //set input box value, rinse and repeat
+              setStartValue();
+              setStartCaret(index);
+              break;
+            }
+            //anything else, do nothing.
+            else {
+              console.log("error :(");
+              break;
+            }
+          case 1:
+            event.preventDefault();
+             if (e.key == "Backspace"){
+                startValArr[0] = '0';
+                setStartValue();
+                goodInput();
+                setStartCaret(index-2);
+                break;
+              }
+             if (startValArr[0] == '2'){
+               if (zTArr.includes(e.key)){
+                startValArr[1] = e.key;
+                setStartValue();
+                goodInput();
+                setStartCaret(index + 1);
+                break;
+              }
+              else {
+               console.log("bad input! zTarr fail :(");
+               break;
+              }
+            }
+            if (numArr.includes(e.key)){
+              startValArr[1] = e.key;
+              setStartValue();
+              goodInput();
+              setStartCaret(index + 1);
+              break;
+            }
+            console.log("bad input! :(");
+            break;
+            
+            case 2:
+            //TODO case 2
+            case 3:
+              event.preventDefault();
+              if(e.key == "Backspace"){
+                startValArr[1] = '0';
+                setStartValue();
+                goodInput();
+                setStartCaret(index -3);
+                break;
+              }
+            //TODO case 3
+            case 4:
+              //TODO case 4
+              break;
+            case 5:
+              //TODO case 5
+              break;
+            case 6:
+              //TODO case 6
+              break;
+            case 7:
+              //TODO case 7
+              break;
+            case 8:
+              //TODO case 8
+              break;
+            case 9:
+              //TODO case 9
+              break;
+            case 10:
+              //TODO case 10
+              break;
+            case 11:
+              //TODO case 11
+              break;
+
+         }
+            
+        }
+       )
+
+    console.log("test");
+    </script>
+</body>
+</html>
