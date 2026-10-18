@@ -201,16 +201,17 @@
             startValArr[3] = e.key;
             setStartValue();
             goodInput();
-            setStartCaret(index + 1);
+            setStartCaret(index);
             break;
           }
-          console.log("bad input! :(");
+          badInput();
           break;
-        //TODO case 3
+
+
         case 4:
           event.preventDefault();
           if (e.key == "ArrowLeft"){
-            setStartCaret(index-2);
+            setStartCaret(index - 3);
             goodInput;
             break;
           }
@@ -226,8 +227,17 @@
             setStartCaret(index - 3);
             break;
           }          
-          //TODO case 4
+          if (numArr.includes(e.key)){
+            startValArr[4] = e.key;
+            setStartValue();
+            goodInput();
+            setStartCaret(index);
+            break;
+          }
+          badInput();
           break;
+
+
         case 5:
           event.preventDefault();
           if (e.key == "ArrowLeft"){
@@ -246,6 +256,12 @@
             goodInput();
             setStartCaret(index - 2);
             break;
+          }
+          if (zFArr.includes(e.key)){
+            startValArr[6] = e.key;
+            setStartValue();
+            goodInput();
+            setStartCaret(index + 1);
           }          
           //TODO case 5
           break;
@@ -273,7 +289,7 @@
         case 7:
           event.preventDefault();
           if (e.key == "ArrowLeft"){
-            setStartCaret(index-2);
+            setStartCaret(index-3);
             goodInput;
             break;
           }
@@ -315,7 +331,7 @@
         case 9:
           event.preventDefault();
           if (e.key == "ArrowLeft"){
-            setStartCaret(index-3);
+            setStartCaret(index-2);
             goodInput;
             break;
           }
@@ -336,7 +352,7 @@
         case 10:
           event.preventDefault();
           if (e.key == "ArrowLeft"){
-            setStartCaret(index-2);
+            setStartCaret(index-3);
             goodInput;
             break;
           }
