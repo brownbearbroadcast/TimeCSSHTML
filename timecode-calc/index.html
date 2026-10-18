@@ -69,6 +69,8 @@
       const zFArr = ['0', '1', '2', '3', '4', '5'];
       //for the others, can be 0-9
       const numArr = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+      // drop frame invalid 00/01
+      const dFArr = ['0' , '1'];
       // input validation for all 11 chars #sobbing-and/or-crying
       switch (index) {
         case 0:
@@ -224,14 +226,14 @@
             startValArr[3] = '0';
             setStartValue();
             goodInput();
-            setStartCaret(index - 3);
+            setStartCaret(index - 2);
             break;
           }          
           if (numArr.includes(e.key)){
             startValArr[4] = e.key;
             setStartValue();
             goodInput();
-            setStartCaret(index);
+            setStartCaret(index + 1);
             break;
           }
           badInput();
@@ -263,8 +265,10 @@
             goodInput();
             setStartCaret(index + 1);
           }          
-          //TODO case 5
+          badInput();
           break;
+
+
         case 6:
           event.preventDefault();
           if (e.key == "ArrowLeft"){
@@ -284,8 +288,16 @@
             setStartCaret(index - 3);
             break;
           }          
-          //TODO case 6
+          if (zFArr.includes(e.key)){
+            startValArr[6] = e.key;
+            setStartValue()
+            goodInput()
+            setStartCaret(index);
+          }
+          badInput();
           break;
+
+
         case 7:
           event.preventDefault();
           if (e.key == "ArrowLeft"){
@@ -302,11 +314,18 @@
             startValArr[6] = '0';
             setStartValue();
             goodInput();
-            setStartCaret(index - 3);
+            setStartCaret(index - 2);
             break;
           }          
-          //TODO case 7
+          if(numArr.includes(e.key)){
+            startValArr[7] = e.key;
+            setStartValue();
+            goodInput();
+            setStartCaret(index + 1);
+          }
           break;
+
+
         case 8:
           event.preventDefault();
           if (e.key == "ArrowLeft"){
@@ -325,9 +344,17 @@
             goodInput();
             setStartCaret(index - 2);
             break;
-          }          
-          //TODO case 8
+          }
+          if (zOArr.includes(e.key)){
+            startValArr[9] = e.key;
+            setStartValue();
+            goodInput();
+            setStartCaret(index + 1);
+          }
+          badInput();
           break;
+
+
         case 9:
           event.preventDefault();
           if (e.key == "ArrowLeft"){
@@ -346,9 +373,17 @@
             goodInput();
             setStartCaret(index - 3);
             break;
+          }
+          if (zOArr.includes(e.key)){
+            startValArr[9] = e.key;
+            setStartValue();
+            goodInput();
+            setStartCaret(index);
           }          
-          //TODO case 9
+          badInput();
           break;
+
+
         case 10:
           event.preventDefault();
           if (e.key == "ArrowLeft"){
@@ -365,11 +400,31 @@
             startValArr[9] = '0';
             setStartValue();
             goodInput();
-            setStartCaret(index - 3);
+            setStartCaret(index - 2);
             break;
-          }          
-          //TODO case 10
-          break;
+          }
+          if (startValArr[7] != 0 && startValArr[9] == 0){
+            if (!(dFArr.includes(e.key))){
+              startValArr[10] = e.key;
+              setStartValue();
+              goodInput();
+              setStartCaret(index);
+              break;
+            }
+          }  
+          else if (numArr.includes(e.key)){
+            startValArr[10] = e.key;
+            setStartValue();
+            goodInput();
+            setStartCaret(index);
+            break;
+          } 
+          else{
+            badInput();
+            break;
+          }
+
+          
         case 11:
           event.preventDefault();
           if (e.key == "ArrowLeft"){
