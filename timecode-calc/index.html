@@ -10,29 +10,37 @@
 </head>
 
 <body>
-  <div>
-    <h1><a href="/timecode-calc">Timecode Calculator</a></h1>
+  <div class="center">
+    <h1>Timecode Calculator</h1>
   </div>
-  <div>
-    <h2>Form</h2>
-    <input class="input" id="start" minlength="11" maxlength="11" />
+  <div class="center">
+    
+    <input class="input" id="start" minlength="11" maxlength="11" inputmode=“numeric” value="00:00:00:00" />
   </div>
   <p></p>
-  <div>
+  <div class="center">
     <!--<h2>End Timecode</h2>-->
-    <input class="input" id="end" minlength="11" maxlength="11" />
+    <input class="input" id="end" minlength="11" maxlength="11" inputmode=“numeric” value="00:00:00:00" />
     <p></p>
   </div>
-  <div><button onclick ="foo()" type="button">Submit</button></div>
-  <div>
+  <div class="center">
+    <p>Format: HH:MM:SS:FF</p>
+  </div>
+  <div class="center">
+    <button onclick="foo()" type="button">Submit</button>
+  </div>
+  <div class="center">
     <h2>Result</h2>
+  </div>
+  <div class="center">
     <p id="result"></p>
   </div>
-  <script src="modules/DropFrame.js"></script>
+  <script src="javascript/DropFrame.js"></script>
   <script src="index.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/4.0.0/jquery.min.js"></script>
-  <script src="modules/startInput.js"></script>
-  <script src="modules/endInput.js" ></script>
+  <script src="javascript/startInput.js"></script>
+  <script src="javascript/endInput.js" ></script>
+
   <script>function foo(){
     let end = document.getElementById("end").value;
     let start = document.getElementById("start").value;

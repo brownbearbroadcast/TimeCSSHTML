@@ -1,47 +1,11 @@
-.btn-144 {
-    --glow_color: #12aeea;
-    border-radius: 5px;
-    color: #12aeea;
-    border-style: solid;
-    background-color: transparent;
-    border: solid 1px #12aeea;
-    padding: 13px 15px;
-    transition: 0.2s ease;
-    text-transform: uppercase;
-    border-width: 2px;
-    font-weight: 500;
-    font-size: 15px;
-    letter-spacing: 1px;
-    font-family: Arial, Helvetica, sans-serif;
-    cursor: pointer;
-    text-decoration: none;
-    user-select: none;
-    display: inline-flex;
+@font-face {
+  font-family: 'Neuropol X';
+  src: url('../src/fonts/NeuropolXRegular-vnWzL.otf') format('opentype');
+ 
+  font-weight: normal;
+  font-style: normal;
 }
 
-.btn-144:hover {
-    color: #fff;
-    background-color: var(--glow_color);
-    border-color: var(--glow_color);
-    text-shadow: 0 0 50px white, 0 0 20px white, 0 0 15px white;
-    box-shadow: 0 0 50px var(--glow_color), 0 0 30px var(--glow_color), 0 0 60px var(--glow_color), 0 0 120px var(--glow_color);
-    letter-spacing: 1.5px;
-    font-size: 17px;
-}
-
-.btn-144:active {
-    font-size: 16px;
-}
-
-/*** disabled style ***/
-.btn-144:disabled {
-    pointer-events: none;
-    opacity: .65;
-    color: #7e7e7e;
-    background: #dcdcdc;
-    text-shadow: none;
-    box-shadow: none;
-}
 /* From Uiverse.io by alexruix */ 
 .input {
   max-width: 190px;
@@ -64,4 +28,16 @@ input:focus {
 
 input:hover {
   outline: 1px solid lightgrey;
+}
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+h1 {
+  font-family: 'Neuropol X', sans-serif;
+  font-size: 3rem;
+  color: #5b5fc7;
+  text-align: center;
+  margin-bottom: 1rem;
 }

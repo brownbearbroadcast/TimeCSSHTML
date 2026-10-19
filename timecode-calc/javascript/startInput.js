@@ -1,12 +1,13 @@
     //obfuscation so the code is not 10 miles long
-    //sets end input box value from array
-   
-    function setEndValue() {
-      $("#end").val(endValArr.join(""));
+    //sets start input box value from array
+    function setStartValue() {
+      $("#start").val(startValArr.join(""));
     }
-
     //this is a janky solution but I never claimed to be a front-end engineer
-    let endValArr = ['0', '0', ':', '0', '0', ':', '0', '0', ';', '0', '0'];
+    let startValArr = ['0', '0', ':', '0', '0', ':', '0', '0', ';', '0', '0'];
+    if (document.getElementById("start").value != "00:00:00;00") {
+      startValArr = document.getElementById("start").value.split("");
+    }
     //lazyness
     function goodInput() {
       console.log("good input! :)");
@@ -15,12 +16,13 @@
       console.log("bad input! :(");
     }
     //by default, caret goes to right. to keep same, insert index - 1.
-    function setEndCaret(index) {
-      document.getElementById("end").setSelectionRange(index + 1, index + 1);
+    function setStartCaret(index) {
+      document.getElementById("start").setSelectionRange(index + 1, index + 1);
     }
+
     //this can probs be 1 equation via obfuscation but just trying to make work right now.
 
-    document.getElementById("end").addEventListener("keydown", e => {
+    document.getElementById("start").addEventListener("keydown", e => {
       console.log("Carat at: ", e.target.selectionStart);
       const index = e.target.selectionStart;
       // arrays that define acceptable number inputs for differnt slots
@@ -40,12 +42,12 @@
           e.preventDefault();
           // adding to every case so that arrow keys work
           if (e.key == "ArrowLeft") {
-            setEndCaret(index - 2);
+            setStartCaret(index - 2);
             goodInput;
             break;
           }
           if (e.key == "ArrowRight") {
-            setEndCaret(index);
+            setStartCaret(index);
             goodInput;
             break;
           }
@@ -53,14 +55,14 @@
           if (zOArr.includes(e.key)) {
             console.log("good input!");
             // set value to pressed key
-            endValArr[0] = e.key;
+            startValArr[0] = e.key;
             // if value is 2, then next get zero'd out if not 0, 1, 2, or 3.
-            if (e.key == '2' && (!(zTArr.includes(endValArr[1])))) {
-              endValArr[1] = '0';
+            if (e.key == '2' && (!(zTArr.includes(startValArr[1])))) {
+              startValArr[1] = '0';
             }
             //set input box value, rinse and repeat
-            setEndValue();
-            setEndCaret(index);
+            setStartValue();
+            setStartCaret(index);
             break;
           }
           //anything else, do nothing.
@@ -73,28 +75,28 @@
         case 1:
           e.preventDefault();
           if (e.key == "ArrowLeft") {
-            setEndCaret(index - 2);
+            setStartCaret(index - 2);
             goodInput;
             break;
           }
           if (e.key == "ArrowRight") {
-            setEndCaret(index + 1);
+            setStartCaret(index + 1);
             goodInput;
             break;
           }
           if (e.key == "Backspace") {
-            endValArr[0] = '0';
-            setEndValue();
+            startValArr[0] = '0';
+            setStartValue();
             goodInput();
-            setEndCaret(index - 2);
+            setStartCaret(index - 2);
             break;
           }
-          if (endValArr[0] == '2') {
+          if (startValArr[0] == '2') {
             if (zTArr.includes(e.key)) {
-              endValArr[1] = e.key;
-              setEndValue();
+              startValArr[1] = e.key;
+              setStartValue();
               goodInput();
-              setEndCaret(index + 1);
+              setStartCaret(index + 1);
               break;
             }
             else {
@@ -103,10 +105,10 @@
             }
           }
           if (numArr.includes(e.key)) {
-            endValArr[1] = e.key;
-            setEndValue();
+            startValArr[1] = e.key;
+            setStartValue();
             goodInput();
-            setEndCaret(index + 1);
+            setStartCaret(index + 1);
             break;
           }
           console.log("bad input! :(");
@@ -116,27 +118,27 @@
         case 2:
           e.preventDefault();
           if (e.key == "ArrowLeft") {
-            setEndCaret(index - 2);
+            setStartCaret(index - 2);
             goodInput;
             break;
           }
           if (e.key == "ArrowRight") {
-            setEndCaret(index);
+            setStartCaret(index);
             goodInput;
             break;
           }
           if (e.key == "Backspace") {
-            endValArr[1] = '0';
-            setEndValue();
+            startValArr[1] = '0';
+            setStartValue();
             goodInput();
-            setEndCaret(index - 2);
+            setStartCaret(index - 2);
             break;
           }
           if (zFArr.includes(e.key)) {
-            endValArr[3] = e.key;
-            setEndValue();
+            startValArr[3] = e.key;
+            setStartValue();
             goodInput();
-            setEndCaret(index);
+            setStartCaret(index);
             break;
           }
           badInput();
@@ -146,27 +148,27 @@
         case 3:
           e.preventDefault();
           if (e.key == "ArrowLeft"){
-            setEndCaret(index-3);
+            setStartCaret(index-3);
             goodInput;
             break;
           }
           if (e.key == "ArrowRight"){
-            setEndCaret(index);
+            setStartCaret(index);
             goodInput;
             break;
           }
           if (e.key == "Backspace") {
-            endValArr[1] = '0';
-            setEndValue();
+            startValArr[1] = '0';
+            setStartValue();
             goodInput();
-            setEndCaret(index - 3);
+            setStartCaret(index - 3);
             break;
           }
           if (zFArr.includes(e.key)) {
-            endValArr[3] = e.key;
-            setEndValue();
+            startValArr[3] = e.key;
+            setStartValue();
             goodInput();
-            setEndCaret(index);
+            setStartCaret(index);
             break;
           }
           badInput();
@@ -176,27 +178,27 @@
         case 4:
           e.preventDefault();
           if (e.key == "ArrowLeft"){
-            setEndCaret(index - 3);
+            setStartCaret(index - 3);
             goodInput;
             break;
           }
           if (e.key == "ArrowRight"){
-            setEndCaret(index + 1);
+            setStartCaret(index + 1);
             goodInput;
             break;
           }          
           if (e.key == "Backspace") {
-            endValArr[3] = '0';
-            setEndValue();
+            startValArr[3] = '0';
+            setStartValue();
             goodInput();
-            setEndCaret(index - 2);
+            setStartCaret(index - 2);
             break;
           }          
           if (numArr.includes(e.key)){
-            endValArr[4] = e.key;
-            setEndValue();
+            startValArr[4] = e.key;
+            setStartValue();
             goodInput();
-            setEndCaret(index + 1);
+            setStartCaret(index + 1);
             break;
           }
           badInput();
@@ -206,27 +208,27 @@
         case 5:
           e.preventDefault();
           if (e.key == "ArrowLeft"){
-            setEndCaret(index-2);
+            setStartCaret(index-2);
             goodInput;
             break;
           }
           if (e.key == "ArrowRight"){
-            setEndCaret(index);
+            setStartCaret(index);
             goodInput;
             break;
           }
           if (e.key == "Backspace") {
-            endValArr[4] = '0';
-            setEndValue();
+            startValArr[4] = '0';
+            setStartValue();
             goodInput();
-            setEndCaret(index - 2);
+            setStartCaret(index - 2);
             break;
           }
           if (zFArr.includes(e.key)){
-            endValArr[6] = e.key;
-            setEndValue();
+            startValArr[6] = e.key;
+            setStartValue();
             goodInput();
-            setEndCaret(index + 1);
+            setStartCaret(index + 1);
           }          
           badInput();
           break;
@@ -235,27 +237,27 @@
         case 6:
           e.preventDefault();
           if (e.key == "ArrowLeft"){
-            setEndCaret(index-3);
+            setStartCaret(index-3);
             goodInput;
             break;
           }
           if (e.key == "ArrowRight"){
-            setEndCaret(index);
+            setStartCaret(index);
             goodInput;
             break;
           }
           if (e.key == "Backspace") {
-            endValArr[4] = '0';
-            setEndValue();
+            startValArr[4] = '0';
+            setStartValue();
             goodInput();
-            setEndCaret(index - 3);
+            setStartCaret(index - 3);
             break;
           }          
           if (zFArr.includes(e.key)){
-            endValArr[6] = e.key;
-            setEndValue()
+            startValArr[6] = e.key;
+            setStartValue()
             goodInput()
-            setEndCaret(index);
+            setStartCaret(index);
           }
           badInput();
           break;
@@ -264,55 +266,59 @@
         case 7:
           e.preventDefault();
           if (e.key == "ArrowLeft"){
-            setEndCaret(index-3);
+            setStartCaret(index-3);
             goodInput;
             break;
           }
           if (e.key == "ArrowRight"){
-            setEndCaret(index + 1);
+            setStartCaret(index + 1);
             goodInput;
             break;
           }
           if (e.key == "Backspace") {
-            endValArr[6] = '0';
-            setEndValue();
+            startValArr[6] = '0';
+            setStartValue();
             goodInput();
-            setEndCaret(index - 2);
+            setStartCaret(index - 2);
             break;
           }          
           if(numArr.includes(e.key)){
-            endValArr[7] = e.key;
-            setEndValue();
+            if(e.key != '0' && startValArr[9] == '0' && dFArr.includes(startValArr[10])){
+              startValArr[10] = '0';
+            }
+            startValArr[7] = e.key;
+            setStartValue();
             goodInput();
-            setEndCaret(index + 1);
+            setStartCaret(index + 1);
           }
+          badInput();
           break;
 
 
         case 8:
           e.preventDefault();
           if (e.key == "ArrowLeft"){
-            setEndCaret(index-2);
+            setStartCaret(index-2);
             goodInput;
             break;
           }
           if (e.key == "ArrowRight"){
-            setEndCaret(index);
+            setStartCaret(index);
             goodInput;
             break;
           }
           if (e.key == "Backspace") {
-            endValArr[7] = '0';
-            setEndValue();
+            startValArr[7] = '0';
+            setStartValue();
             goodInput();
-            setEndCaret(index - 2);
+            setStartCaret(index - 2);
             break;
           }
           if (zOArr.includes(e.key)){
-            endValArr[9] = e.key;
-            setEndValue();
+            startValArr[9] = e.key;
+            setStartValue();
             goodInput();
-            setEndCaret(index + 1);
+            setStartCaret(index + 1);
           }
           badInput();
           break;
@@ -321,27 +327,27 @@
         case 9:
           e.preventDefault();
           if (e.key == "ArrowLeft"){
-            setEndCaret(index-2);
+            setStartCaret(index-2);
             goodInput;
             break;
           }
           if (e.key == "ArrowRight"){
-            setEndCaret(index);
+            setStartCaret(index);
             goodInput;
             break;
           }
           if (e.key == "Backspace") {
-            endValArr[7] = '0';
-            setEndValue();
+            startValArr[7] = '0';
+            setStartValue();
             goodInput();
-            setEndCaret(index - 3);
+            setStartCaret(index - 3);
             break;
           }
           if (zOArr.includes(e.key)){
-            endValArr[9] = e.key;
-            setEndValue();
+            startValArr[9] = e.key;
+            setStartValue();
             goodInput();
-            setEndCaret(index);
+            setStartCaret(index);
           }          
           badInput();
           break;
@@ -350,40 +356,40 @@
         case 10:
           e.preventDefault();
           if (e.key == "ArrowLeft"){
-            setEndCaret(index-3);
+            setStartCaret(index-3);
             goodInput;
             break;
           }
           if (e.key == "ArrowRight"){
-            setEndCaret(index);
+            setStartCaret(index);
             goodInput;
             break;
           }
           if (e.key == "Backspace") {
-            endValArr[9] = '0';
-            setEndValue();
+            startValArr[9] = '0';
+            setStartValue();
             goodInput();
-            setEndCaret(index - 2);
+            setStartCaret(index - 2);
             break;
           }
-          if (endValArr[7] != 0 && endValArr[9] == 0){
+          if (startValArr[7] != 0 && startValArr[9] == 0){
             if (!(dFArr.includes(e.key))){
-              endValArr[10] = e.key;
-              setEndValue();
+              startValArr[10] = e.key;
+              setStartValue();
               goodInput();
-              setEndCaret(index);
+              setStartCaret(index);
               break;
             }
-            else {
+            else{
               badInput();
               break;
             }
           }  
-          if (numArr.includes(e.key)){
-            endValArr[10] = e.key;
-            setEndValue();
+          else if (numArr.includes(e.key)){
+            startValArr[10] = e.key;
+            setStartValue();
             goodInput();
-            setEndCaret(index);
+            setStartCaret(index);
             break;
           } 
             badInput();
@@ -393,18 +399,18 @@
         case 11:
           e.preventDefault();
           if (e.key == "ArrowLeft"){
-            setEndCaret(index-2);
+            setStartCaret(index-2);
             goodInput;
             break;
           }
           if (e.key == "Backspace") {
-            endValArr[10] = '0';
-            setEndValue();
+            startValArr[10] = '0';
+            setStartValue();
             goodInput();
-            setEndCaret(index - 2);
+            setStartCaret(index - 2);
             break;
           }          
-          badInput(); //would like to meld into next input maybe
+          //TODO case 11
           break;
 
       }
@@ -412,4 +418,4 @@
     }
     )
 
-    console.log("test");
+    console.log(Number("01"));
