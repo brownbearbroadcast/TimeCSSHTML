@@ -7,6 +7,7 @@ class DropFrame {
 
 
 
+
     //constructor that allows for dynamic insetion, 
     //meaning 00 would trigger frames, 0000 triggers 
     //seconds & frames.
@@ -36,7 +37,7 @@ class DropFrame {
             this.hours = hours;
         }
 
-        this.framerate = 29.7;
+        this.framerate = 30;
     }
 
     //functions for dropframe
@@ -91,9 +92,9 @@ class DropFrame {
         const frame_count = endFrame - startFrame;
         const h = Math.floor(frame_count / 107892);
         let hours = h % 24;
-        let minutes = Math.floor(1 / 1800.00 * (frame_count - 2 * Math.floor((frame_count - (107892 * h)) / 1800.0) - 2 * Math.floor((frame_count - (107892 * h)) / 18000.0) - 107892 * h));
+        let minutes = Math.floor(1 / 1800.00 * (frame_count + 2 * Math.floor((frame_count + (107892 * h)) / 1800.0) + 2 * Math.floor((frame_count - (107892 * h)) / 18000.0) - 107892 * h));
         let seconds = Math.floor(1 / 30 * (frame_count - 1798 * minutes - 2 * Math.floor(minutes / 10.0) - 107892 * h));
-        let frames = Math.floor(frame_count - 30 * seconds - 1798 * minutes - 2 * Math.floor(minutes / 10.0) - 107892 * h);
+        let frames = Math.floor(frame_count - (30 * seconds) - (1798 * minutes) - (2 * Math.floor(minutes / 10.0)) - (107892 * h));
         if (minutes != 0 && minutes % 10 != 0) {
             switch (frames) {
                 case 0:
@@ -154,22 +155,21 @@ class DropFrame {
         }
         return new DropFrame(frames, seconds, minutes, hours);
     }
-    display(digits) {
+    display() {
+        let digits = new Intl.NumberFormat('en-US', {  minimumIntegerDigits: 2 });
         console.log(`Duration: ${digits.format(this.hours)}:${digits.format(this.minutes)}:${digits.format(this.seconds)}:${digits.format(this.frames)}`);
 
     }
-    string(digits) {
+    string() {
+        let digits = new Intl.NumberFormat('en-US', {  minimumIntegerDigits: 2 });
         return `Duration: ${digits.format(this.hours)}:${digits.format(this.minutes)}:${digits.format(this.seconds)}:${digits.format(this.frames)}`;
     }
 }
 
 
-// tests:
-/*
-var digits = new Intl.NumberFormat('en-US', {  minimumIntegerDigits: 2 });
 const start = new DropFrame(2,0,14,0);
 const end = new DropFrame(2,0,15,0);
 const test = start.duration(start,end);
-console.log(`Duration: ${digits.format(test.hours)}:${digits.format(test.minutes)}:${digits.format(test.seconds)}:${digits.format(test.frames)}`);
+console.log(test.string());
 
-test.display(digits); */
+test.display(); 

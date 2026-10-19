@@ -23,14 +23,36 @@
     <input class="input" id="end" minlength="11" maxlength="11" />
     <p></p>
   </div>
-  <div><button class="btn-144" type="button">Submit</button></div>
-
+  <div><button onclick ="foo()" type="button">Submit</button></div>
+  <div>
+    <h2>Result</h2>
+    <p id="result"></p>
+  </div>
   <script src="modules/DropFrame.js"></script>
-  <script src="/timecode-calc/index.js"></script>
+  <script src="index.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/4.0.0/jquery.min.js"></script>
   <script src="modules/startInput.js"></script>
   <script src="modules/endInput.js" ></script>
-
+  <script>function foo(){
+    let end = document.getElementById("end").value;
+    let start = document.getElementById("start").value;
+    let startHour = Number(start.slice(0,2));
+    let startMinute = Number(start.slice(3,5));
+    let startSecond = Number(start.slice(6,8));
+    let startFrame = Number(start.slice(9,11));
+    console.log(startHour, startMinute, startSecond, startFrame);
+    let endHour = Number(end.slice(0,2));
+    let endMinute = Number(end.slice(3,5));
+    let endSecond = Number(end.slice(6,8));
+    let endFrame = Number(end.slice(9,11));
+    console.log(endHour, endMinute, endSecond, endFrame);
+    let startTimecode = new DropFrame(startFrame, startSecond, startMinute, startHour);
+    startTimecode.display();
+    let endTimecode = new DropFrame(endFrame, endSecond, endMinute, endHour);
+    endTimecode.display();
+    let duration = startTimecode.duration(startTimecode, endTimecode);
+    document.getElementById("result").innerHTML = duration.string(new Intl.NumberFormat('en-US', {  minimumIntegerDigits: 2 }));
+}</script>
 </body>
 
 </html>
