@@ -1,5 +1,6 @@
     //obfuscation so the code is not 10 miles long
     //sets end input box value from array
+   
     function setEndValue() {
       $("#end").val(endValArr.join(""));
     }
