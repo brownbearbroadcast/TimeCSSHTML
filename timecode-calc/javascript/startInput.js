@@ -1,10 +1,11 @@
     //obfuscation so the code is not 10 miles long
     //sets start input box value from array
+   
     function setStartValue() {
       $("#start").val(startValArr.join(""));
     }
-    //this is a janky solution but I never claimed to be a front-end engineer
     let startValArr = ['0', '0', ':', '0', '0', ':', '0', '0', ';', '0', '0'];
+    //this is a janky solution but I never claimed to be a front-start engineer
     if (document.getElementById("start").value != "00:00:00;00") {
       startValArr = document.getElementById("start").value.split("");
     }
@@ -19,7 +20,6 @@
     function setStartCaret(index) {
       document.getElementById("start").setSelectionRange(index + 1, index + 1);
     }
-
     //this can probs be 1 equation via obfuscation but just trying to make work right now.
 
     document.getElementById("start").addEventListener("keydown", e => {
@@ -41,17 +41,11 @@
         case 0:
           e.preventDefault();
           // adding to every case so that arrow keys work
-          if (e.key == "ArrowLeft") {
-            setStartCaret(index - 2);
-            goodInput;
-            break;
-          }
           if (e.key == "ArrowRight") {
             setStartCaret(index);
             goodInput;
             break;
           }
-          // end of snippet
           if (zOArr.includes(e.key)) {
             console.log("good input!");
             // set value to pressed key
@@ -138,7 +132,7 @@
             startValArr[3] = e.key;
             setStartValue();
             goodInput();
-            setStartCaret(index);
+            setStartCaret(index + 1);
             break;
           }
           badInput();
@@ -178,7 +172,7 @@
         case 4:
           e.preventDefault();
           if (e.key == "ArrowLeft"){
-            setStartCaret(index - 3);
+            setStartCaret(index - 2);
             goodInput;
             break;
           }
@@ -191,7 +185,7 @@
             startValArr[3] = '0';
             setStartValue();
             goodInput();
-            setStartCaret(index - 2);
+            setStartCaret(index - 3);
             break;
           }          
           if (numArr.includes(e.key)){
@@ -229,6 +223,7 @@
             setStartValue();
             goodInput();
             setStartCaret(index + 1);
+            break;
           }          
           badInput();
           break;
@@ -258,6 +253,7 @@
             setStartValue()
             goodInput()
             setStartCaret(index);
+            break;
           }
           badInput();
           break;
@@ -266,7 +262,7 @@
         case 7:
           e.preventDefault();
           if (e.key == "ArrowLeft"){
-            setStartCaret(index-3);
+            setStartCaret(index-2);
             goodInput;
             break;
           }
@@ -279,19 +275,18 @@
             startValArr[6] = '0';
             setStartValue();
             goodInput();
-            setStartCaret(index - 2);
+            setStartCaret(index - 3);
             break;
           }          
           if(numArr.includes(e.key)){
-            if(e.key != '0' && startValArr[9] == '0' && dFArr.includes(startValArr[10])){
-              startValArr[10] = '0';
+            if(e.key == '0' && startValArr[4] != '0' && dFArr.includes(startValArr[10])){
+              startValArr[10] = '2';
             }
             startValArr[7] = e.key;
             setStartValue();
             goodInput();
             setStartCaret(index + 1);
           }
-          badInput();
           break;
 
 
@@ -319,6 +314,7 @@
             setStartValue();
             goodInput();
             setStartCaret(index + 1);
+            break;
           }
           badInput();
           break;
@@ -327,7 +323,7 @@
         case 9:
           e.preventDefault();
           if (e.key == "ArrowLeft"){
-            setStartCaret(index-2);
+            setStartCaret(index-3);
             goodInput;
             break;
           }
@@ -348,6 +344,7 @@
             setStartValue();
             goodInput();
             setStartCaret(index);
+            break;
           }          
           badInput();
           break;
@@ -356,7 +353,7 @@
         case 10:
           e.preventDefault();
           if (e.key == "ArrowLeft"){
-            setStartCaret(index-3);
+            setStartCaret(index-2);
             goodInput;
             break;
           }
@@ -369,10 +366,10 @@
             startValArr[9] = '0';
             setStartValue();
             goodInput();
-            setStartCaret(index - 2);
+            setStartCaret(index - 3);
             break;
           }
-          if (startValArr[7] != 0 && startValArr[9] == 0){
+         if (startValArr[6] == 0 && startValArr[7] == 0 && startValArr[4] != 0){
             if (!(dFArr.includes(e.key))){
               startValArr[10] = e.key;
               setStartValue();
@@ -380,12 +377,12 @@
               setStartCaret(index);
               break;
             }
-            else{
+            else {
               badInput();
               break;
             }
           }  
-          else if (numArr.includes(e.key)){
+          if (numArr.includes(e.key)){
             startValArr[10] = e.key;
             setStartValue();
             goodInput();
@@ -410,7 +407,7 @@
             setStartCaret(index - 2);
             break;
           }          
-          //TODO case 11
+          badInput(); //would like to meld into next input maybe
           break;
 
       }
@@ -418,4 +415,4 @@
     }
     )
 
-    console.log(Number("01"));
+    console.log("test");
