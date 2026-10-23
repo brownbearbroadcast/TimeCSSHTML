@@ -49,7 +49,7 @@ class DropFrame {
         const startFrame = Math.floor(30 * this.seconds + 1798 * this.minutes + 2 * Math.floor(this.minutes / 10) + 107892 * this.hours + this.frames);
 
         const endFrame = Math.floor(30 * addend.seconds + 1798 * addend.minutes + 2 * Math.floor(addend.minutes / 10) + 107892 * addend.hours + addend.frames);
-
+        
         // TODO: Input validation for CalculateDuration
         const frame_count = endFrame + startFrame;
         const h = Math.floor(frame_count / 107892);
@@ -77,18 +77,22 @@ class DropFrame {
                 hours--;
                 minutes = 59;
             }
-            return new DropFrame(frames, seconds, minutes, hours);
         }
+        return new DropFrame(frames, seconds, minutes, hours);
     }
 
 
     subtract(minuend) {
 
-        // algebraic manipulation of EG 40 6.5.5 ; not final solution
+        // algebraic manipulation of EG 40 6.5.5
         const startFrame = Math.floor(30 * this.seconds + 1798 * this.minutes + 2 * Math.floor(this.minutes / 10) + 107892 * this.hours + this.frames);
 
         const endFrame = Math.floor(30 * minuend.seconds + 1798 * minuend.minutes + 2 * Math.floor(minuend.minutes / 10) + 107892 * minuend.hours + minuend.frames);
 
+        if (startFrame < endFrame) {
+        alert("Minuend (bottom) timecode must be less than or equal to original timecode.");
+        return;
+        }
         // TODO: Input validation for CalculateDuration
         const frame_count = endFrame - startFrame;
         const h = Math.floor(frame_count / 107892);
@@ -126,7 +130,10 @@ class DropFrame {
         const startFrame = Math.floor(startTimecode.framerate * startTimecode.seconds + 1798 * startTimecode.minutes + 2 * Math.floor(startTimecode.minutes / 10) + 107892 * startTimecode.hours + startTimecode.frames);
 
         const endFrame = Math.floor(startTimecode.framerate * endTimecode.seconds + 1798 * endTimecode.minutes + 2 * Math.floor(endTimecode.minutes / 10) + 107892 * endTimecode.hours + endTimecode.frames);
-
+        if (startFrame > endFrame) {
+            alert("Start timecode must be less than or equal to end timecode.");
+            return;
+        }
         // TODO: Input validation for CalculateDuration
         const frame_count = endFrame - startFrame;
         const h = Math.floor(frame_count / 107892);

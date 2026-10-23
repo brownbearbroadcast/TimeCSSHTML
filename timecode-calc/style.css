@@ -1,5 +1,5 @@
 @font-face {
-  font-family: 'NPX';
+  font-family: 'ARG';
   src: url('../src/fonts/NPX.otf') format('opentype');
  
   font-weight: normal;
@@ -46,6 +46,12 @@ h1 {
   margin-bottom: 1rem;
 }
 button {
+  font-family: 'ARG', sans-serif;
+  font-size: 1.5rem;
+  color: #5b5fc7;
+  text-align: center;
+}
+select{
   font-family: 'ARG', sans-serif;
   font-size: 1.5rem;
   color: #5b5fc7;

@@ -9,23 +9,19 @@ function flagSubmit(){
     console.log(flag);
   
     if (flag == "Duration"){
-        if (topTimecode.frame_count > bottomTimecode.frame_count) {
-        alert("Start timecode must be less than or equal to end timecode.");
+    if (topTimecode.duration(topTimecode, bottomTimecode) == undefined) {
         return;
     }
-    console.log("hello there");
     var resultant = topTimecode.duration(topTimecode, bottomTimecode);
     }
     if (flag == "Add"){
     var resultant = topTimecode.add(bottomTimecode);
     }
     if (flag == "Subtract"){
-      if (topTimecode.frame_count < bottomTimecode.frame_count) {
-        alert("Minuend (bottom) timecode must be less than or equal to original timecode.");
+      if (topTimecode.subtract(bottomTimecode) == undefined) {
         return;
       }
-      topTimecode.subtract(bottomTimecode);
-      var resultant = topTimecode;
+       var resultant = topTimecode.subtract(bottomTimecode);
     }
     console.log(resultant);
     document.getElementById("result").innerHTML = resultant.string(new Intl.NumberFormat('en-US', {  minimumIntegerDigits: 2 }));
