@@ -74,7 +74,7 @@
         return;
       }
       topTimecode.subtract(bottomTimecode);
-      var resultant = topTimecode;;
+      var resultant = topTimecode;
     }
     console.log(resultant);
     document.getElementById("result").innerHTML = resultant.string(new Intl.NumberFormat('en-US', {  minimumIntegerDigits: 2 }));
