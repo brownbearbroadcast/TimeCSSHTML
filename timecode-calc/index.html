@@ -16,7 +16,7 @@
   <div class="center">
     
     <input class="input" id="start" minlength="11" maxlength="11" inputmode=“numeric”  pattern="[0-9]*" value="00:00:00:00" />
-  </div
+  </div>
   <p></p>
   <div class="center">
     <!--<h2>End Timecode</h2>-->
@@ -27,7 +27,13 @@
     <p>Format: HH:MM:SS:FF</p>
   </div>
   <div class="center">
-    <button onclick="foo()" type="button">Submit</button>
+<select name="operation" id="operation">
+  <option value="Duration" selected>Duration</option>
+  <option value="Add">Add</option>
+  <option value="Subtract">Subtract</option>
+</select>
+
+<button onclick="flagSubmit()" type="button">Submit</button>
   </div>
   <div class="center">
     <h2>Result</h2>
@@ -41,25 +47,37 @@
   <script src="javascript/startInput.js"></script>
   <script src="javascript/endInput.js" ></script>
 
-  <script>function foo(){
+  <script>function flagSubmit(){
+    const flag = document.getElementById("operation").value;
     let end = document.getElementById("end").value;
     let start = document.getElementById("start").value;
-    let startHour = Number(start.slice(0,2));
-    let startMinute = Number(start.slice(3,5));
-    let startSecond = Number(start.slice(6,8));
-    let startFrame = Number(start.slice(9,11));
-    console.log(startHour, startMinute, startSecond, startFrame);
-    let endHour = Number(end.slice(0,2));
-    let endMinute = Number(end.slice(3,5));
-    let endSecond = Number(end.slice(6,8));
-    let endFrame = Number(end.slice(9,11));
-    console.log(endHour, endMinute, endSecond, endFrame);
-    let startTimecode = new DropFrame(startFrame, startSecond, startMinute, startHour);
-    startTimecode.display();
-    let endTimecode = new DropFrame(endFrame, endSecond, endMinute, endHour);
-    endTimecode.display();
-    let duration = startTimecode.duration(startTimecode, endTimecode);
-    document.getElementById("result").innerHTML = duration.string(new Intl.NumberFormat('en-US', {  minimumIntegerDigits: 2 }));
+    let topTimecode = new DropFrame(Number(start.slice(9,11)), Number(start.slice(6,8)), Number(start.slice(3,5)), Number(start.slice(0,2)));
+    topTimecode.display();
+    let bottomTimecode = new DropFrame(Number(end.slice(9,11)), Number(end.slice(6,8)), Number(end.slice(3,5)), Number(end.slice(0,2)));
+    bottomTimecode.display();
+    console.log(flag);
+  
+    if (flag == "Duration"){
+        if (topTimecode.frame_count > bottomTimecode.frame_count) {
+        alert("Start timecode must be less than or equal to end timecode.");
+        return;
+    }
+    console.log("hello there");
+    var resultant = topTimecode.duration(topTimecode, bottomTimecode);
+    }
+    if (flag == "Add"){
+    var resultant = topTimecode.add(bottomTimecode);
+    }
+    if (flag == "Subtract"){
+      if (topTimecode.frame_count < bottomTimecode.frame_count) {
+        alert("Minuend (bottom) timecode must be less than or equal to original timecode.");
+        return;
+      }
+      topTimecode.subtract(bottomTimecode);
+      var resultant = topTimecode;;
+    }
+    console.log(resultant);
+    document.getElementById("result").innerHTML = resultant.string(new Intl.NumberFormat('en-US', {  minimumIntegerDigits: 2 }));
 }</script>
 </body>
 
