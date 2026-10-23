@@ -94,7 +94,7 @@ class DropFrame {
         return;
         }
         // TODO: Input validation for CalculateDuration
-        const frame_count = endFrame - startFrame;
+        const frame_count = startFrame - endFrame;
         const h = Math.floor(frame_count / 107892);
         let hours = h % 24;
         let minutes = Math.floor(1 / 1800.00 * (frame_count + 2 * Math.floor((frame_count + (107892 * h)) / 1800.0) + 2 * Math.floor((frame_count - (107892 * h)) / 18000.0) - 107892 * h));
