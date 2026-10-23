@@ -82,7 +82,7 @@ class DropFrame {
     }
 
 
-    subract(minuend) {
+    subtract(minuend) {
 
         // algebraic manipulation of EG 40 6.5.5 ; not final solution
         const startFrame = Math.floor(30 * this.seconds + 1798 * this.minutes + 2 * Math.floor(this.minutes / 10) + 107892 * this.hours + this.frames);
