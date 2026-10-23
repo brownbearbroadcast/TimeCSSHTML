@@ -54,8 +54,9 @@ class DropFrame {
         const frame_count = endFrame + startFrame;
         const h = Math.floor(frame_count / 107892);
         let hours = h % 24;
-        let minutes = Math.floor(1 / 1800.00 * (frame_count - 2 * Math.floor((frame_count - (107892 * h)) / 1800.0) - 2 * Math.floor((frame_count - (107892 * h)) / 18000.0) - 107892 * h));
+        let minutes = Math.floor(1 / 1800.00 * (frame_count + 2 * Math.floor((frame_count - (107892 * h)) / 1800.0) - 2 * Math.floor((frame_count - (107892 * h)) / 18000.0) - 107892 * h));
         let seconds = Math.floor(1 / 30 * (frame_count - 1798 * minutes - 2 * Math.floor(minutes / 10.0) - 107892 * h));
+        console.log("seconds: " + seconds);
         let frames = Math.floor(frame_count - 30 * seconds - 1798 * minutes - 2 * Math.floor(minutes / 10.0) - 107892 * h);
         if (minutes != 0 && minutes % 10 != 0) {
             switch (frames) {

@@ -41,17 +41,11 @@
         case 0:
           e.preventDefault();
           // adding to every case so that arrow keys work
-          if (e.key == "ArrowLeft") {
-            setEndCaret(index - 2);
-            goodInput;
-            break;
-          }
           if (e.key == "ArrowRight") {
             setEndCaret(index);
             goodInput;
             break;
           }
-          // end of snippet
           if (zOArr.includes(e.key)) {
             console.log("good input!");
             // set value to pressed key
@@ -138,7 +132,7 @@
             endValArr[3] = e.key;
             setEndValue();
             goodInput();
-            setEndCaret(index);
+            setEndCaret(index + 1);
             break;
           }
           badInput();
@@ -178,7 +172,7 @@
         case 4:
           e.preventDefault();
           if (e.key == "ArrowLeft"){
-            setEndCaret(index - 3);
+            setEndCaret(index - 2);
             goodInput;
             break;
           }
@@ -191,7 +185,7 @@
             endValArr[3] = '0';
             setEndValue();
             goodInput();
-            setEndCaret(index - 2);
+            setEndCaret(index - 3);
             break;
           }          
           if (numArr.includes(e.key)){
@@ -229,6 +223,7 @@
             setEndValue();
             goodInput();
             setEndCaret(index + 1);
+            break;
           }          
           badInput();
           break;
@@ -258,6 +253,7 @@
             setEndValue()
             goodInput()
             setEndCaret(index);
+            break;
           }
           badInput();
           break;
@@ -266,7 +262,7 @@
         case 7:
           e.preventDefault();
           if (e.key == "ArrowLeft"){
-            setEndCaret(index-3);
+            setEndCaret(index-2);
             goodInput;
             break;
           }
@@ -279,10 +275,13 @@
             endValArr[6] = '0';
             setEndValue();
             goodInput();
-            setEndCaret(index - 2);
+            setEndCaret(index - 3);
             break;
           }          
           if(numArr.includes(e.key)){
+            if(e.key == '0' && endValArr[4] != '0' && dFArr.includes(endValArr[10])){
+              endValArr[10] = '2';
+            }
             endValArr[7] = e.key;
             setEndValue();
             goodInput();
@@ -315,6 +314,7 @@
             setEndValue();
             goodInput();
             setEndCaret(index + 1);
+            break;
           }
           badInput();
           break;
@@ -323,7 +323,7 @@
         case 9:
           e.preventDefault();
           if (e.key == "ArrowLeft"){
-            setEndCaret(index-2);
+            setEndCaret(index-3);
             goodInput;
             break;
           }
@@ -344,6 +344,7 @@
             setEndValue();
             goodInput();
             setEndCaret(index);
+            break;
           }          
           badInput();
           break;
@@ -352,7 +353,7 @@
         case 10:
           e.preventDefault();
           if (e.key == "ArrowLeft"){
-            setEndCaret(index-3);
+            setEndCaret(index-2);
             goodInput;
             break;
           }
@@ -365,10 +366,10 @@
             endValArr[9] = '0';
             setEndValue();
             goodInput();
-            setEndCaret(index - 2);
+            setEndCaret(index - 3);
             break;
           }
-          if (endValArr[7] != 0 && endValArr[9] == 0){
+         if (endValArr[6] == 0 && endValArr[7] == 0 && endValArr[4] != 0){
             if (!(dFArr.includes(e.key))){
               endValArr[10] = e.key;
               setEndValue();
