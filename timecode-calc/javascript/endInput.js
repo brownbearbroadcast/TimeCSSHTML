@@ -165,6 +165,9 @@ document.getElementById("end").addEventListener("keydown", e => {
         break;
       }
       if (numArr.includes(e.key)) {
+          if(e.key != '0' && endValArr[9] == '0' && dFArr.includes(endValArr[10])){
+          endValArr[10] = '2';
+        }
         setEndValueAndCaret(4, e.key, index + 1);
         break;
       }

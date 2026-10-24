@@ -13,7 +13,11 @@
   font-style: normal;
 }
 
-
+label{
+  display: inline-block;
+  padding-right: .5rem;
+  text-align: right;
+}
 .input {
   max-width: 11.25rem;
   font-size: 2.25rem;
@@ -38,6 +42,37 @@ input:hover {
   justify-content: center;
   align-items: center;
 }
+.start {
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  right: 1.91rem;
+}
+.original {
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  right: 2.7rem;
+}
+.end {
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  right: 1.5rem;
+}
+.addend {
+ justify-content: center;
+  align-items: center;
+  position: relative;
+  right: 2.65rem;
+}
+.minuend {
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  right: 2.86rem;
+}
+
 h1 {
   font-family: 'NPX', sans-serif;
   font-size: 3rem;

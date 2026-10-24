@@ -1,3 +1,26 @@
+
+document.getElementById("operation").addEventListener("change", e => {
+
+  if (document.getElementById("operation").value == "Addition") {
+   document.getElementById("topLabel").innerHTML = "Original: "
+   document.getElementById("top").setAttribute("class","original");
+   document.getElementById("bottomLabel").innerHTML = "Addend: ";
+   document.getElementById("bottom").setAttribute("class","addend");
+  }
+  else if (document.getElementById("operation").value == "Subtraction") {
+
+   document.getElementById("topLabel").innerHTML = "Original: "
+   document.getElementById("top").setAttribute("class","original");
+   document.getElementById("bottomLabel").innerHTML = "Minuend: ";
+   document.getElementById("bottom").setAttribute("class","minuend");
+  }
+  else if (document.getElementById("operation").value == "Duration") {
+   document.getElementById("topLabel").innerHTML = "Start: "
+   document.getElementById("top").setAttribute("class","start");
+   document.getElementById("bottomLabel").innerHTML = "End: ";
+   document.getElementById("bottom").setAttribute("class","end");
+  }
+});
 function flagSubmit(){
     const flag = document.getElementById("operation").value;
     let end = document.getElementById("end").value;
@@ -8,7 +31,7 @@ function flagSubmit(){
     bottomTimecode.display();
     console.log(flag);
   
-       if (flag == "Duration"){
+    if (flag == "Duration"){
     if (topTimecode.duration(topTimecode, bottomTimecode) == undefined) {
         return;
     }
@@ -29,4 +52,6 @@ function flagSubmit(){
       console.log(resultant);
       document.getElementById("result").innerHTML = "Result: " + resultant.string();
     }
+  
+   
 }

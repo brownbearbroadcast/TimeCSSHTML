@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+  <meta name="robots" content="noindex">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -13,27 +14,31 @@
   <div class="center">
     <h1>Timecode Calculator</h1>
   </div>
-  <div class="center">
-    
-    <input class="input" id="start" minlength="11" maxlength="11" inputmode=“numeric”  pattern="[0-9]*" value="00:00:00:00" />
+  <div id="top" class="start">
+    <label id="topLabel" for="start">Start:</label>
+    <input class="input" id="start" minlength="11" maxlength="11" inputmode=“numeric” pattern="[0-9]*"
+      value="00:00:00:00" />
   </div>
   <p></p>
-  <div class="center">
-    <!--<h2>End Timecode</h2>-->
-    <input class="input" id="end" minlength="11" maxlength="11" inputmode=“numeric”  pattern="[0-9]*" value="00:00:00:00" />
+  <div id ="bottom" class="end">
+    <label id="bottomLabel" for="end">End:</label>
+    <input class="input" id="end" minlength="11" maxlength="11" inputmode=“numeric” pattern="[0-9]*"
+      value="00:00:00:00" />
     <p></p>
   </div>
+
+
   <div class="center">
     <p>Format: HH:MM:SS:FF</p>
   </div>
   <div class="center">
-<select name="operation" id="operation">
-  <option value="Duration" selected>Duration</option>
-  <option value="Add">Add</option>
-  <option value="Subtract">Subtract</option>
-</select>
+    <select name="operation" id="operation">
+      <option value="Duration" selected>Duration</option>
+      <option value="Addition">Addition</option>
+      <option value="Subtraction">Subtraction</option>
+    </select>
 
-<button onclick="flagSubmit()" type="button">Submit</button>
+    <button onclick="flagSubmit()" type="button">Submit</button>
   </div>
   <div class="center">
     <h2>Result</h2>
@@ -45,8 +50,28 @@
   <script src="index.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/4.0.0/jquery.min.js"></script>
   <script src="javascript/startInput.js"></script>
-  <script src="javascript/endInput.js" ></script>
-
+  <script src="javascript/endInput.js"></script>
+  <script src="javascript/thirdInput.js"></script>
+  <script>
+  if (document.getElementById("operation").value == "Addition") {
+   document.getElementById("topLabel").innerHTML = "Original: "
+   document.getElementById("top").setAttribute("class","original");
+   document.getElementById("bottomLabel").innerHTML = "Addend: ";
+   document.getElementById("bottom").setAttribute("class","addend");
+  }
+  else if (document.getElementById("operation").value == "Subtraction") {
+   document.getElementById("topLabel").innerHTML = "Original: "
+   document.getElementById("top").setAttribute("class","original");
+   document.getElementById("bottomLabel").innerHTML = "Minuend: ";
+   document.getElementById("bottom").setAttribute("class","minuend");
+  }
+  else if (document.getElementById("operation").value == "Duration") {
+   document.getElementById("topLabel").innerHTML = "Start: "
+   document.getElementById("top").setAttribute("class","start");
+   document.getElementById("bottomLabel").innerHTML = "End: ";
+   document.getElementById("bottom").setAttribute("class","end");
+  }
+  </script>
 
 </body>
 

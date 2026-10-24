@@ -50,8 +50,9 @@ class DropFrame {
 
         const endFrame = Math.floor(30 * addend.seconds + 1798 * addend.minutes + 2 * Math.floor(addend.minutes / 10) + 107892 * addend.hours + addend.frames);
         
+        let frame_count;
         // TODO: Input validation for CalculateDuration
-        const frame_count = endFrame + startFrame;
+        frame_count = endFrame + startFrame;
         const h = Math.floor(frame_count / 107892);
         let hours = h % 24;
         let minutes = Math.floor(1 / 1800.00 * (frame_count + 2 * Math.floor((frame_count - (107892 * h)) / 1800.0) - 2 * Math.floor((frame_count - (107892 * h)) / 18000.0) - 107892 * h));
@@ -82,24 +83,25 @@ class DropFrame {
     }
 
 
-    subtract(minuend) {
+
+     subtract(minuend) {
 
         // algebraic manipulation of EG 40 6.5.5
         const startFrame = Math.floor(30 * this.seconds + 1798 * this.minutes + 2 * Math.floor(this.minutes / 10) + 107892 * this.hours + this.frames);
 
-        const endFrame = Math.floor(30 * minuend.seconds + 1798 * minuend.minutes + 2 * Math.floor(minuend.minutes / 10) + 107892 * minuend.hours + minuend.frames);
+        let endFrame = Math.floor(30 * minuend.seconds + 1798 * minuend.minutes + 2 * Math.floor(minuend.minutes / 10) + 107892 * minuend.hours + minuend.frames);
 
+        let frame_count;
         if (startFrame < endFrame) {
-        alert("Minuend (bottom) timecode must be less than or equal to original timecode.");
-        return;
+        frame_count = 107892*24 - (startFrame - endFrame);
         }
-        // TODO: Input validation for CalculateDuration
-        const frame_count = startFrame - endFrame;
+        else {frame_count = startFrame - endFrame; }
         const h = Math.floor(frame_count / 107892);
         let hours = h % 24;
-        let minutes = Math.floor(1 / 1800.00 * (frame_count + 2 * Math.floor((frame_count + (107892 * h)) / 1800.0) + 2 * Math.floor((frame_count - (107892 * h)) / 18000.0) - 107892 * h));
+        let minutes = Math.floor(1 / 1800.00 * (frame_count + 2 * Math.floor((frame_count - (107892 * h)) / 1800.0) - 2 * Math.floor((frame_count - (107892 * h)) / 18000.0) - 107892 * h));
         let seconds = Math.floor(1 / 30 * (frame_count - 1798 * minutes - 2 * Math.floor(minutes / 10.0) - 107892 * h));
-        let frames = Math.floor(frame_count - (30 * seconds) - (1798 * minutes) - (2 * Math.floor(minutes / 10.0)) - (107892 * h));
+        console.log("seconds: " + seconds);
+        let frames = Math.floor(frame_count - 30 * seconds - 1798 * minutes - 2 * Math.floor(minutes / 10.0) - 107892 * h);
         if (minutes != 0 && minutes % 10 != 0) {
             switch (frames) {
                 case 0:
@@ -129,13 +131,14 @@ class DropFrame {
         // algebraic manipulation of EG 40 6.5.5 ; not final solution
         const startFrame = Math.floor(startTimecode.framerate * startTimecode.seconds + 1798 * startTimecode.minutes + 2 * Math.floor(startTimecode.minutes / 10) + 107892 * startTimecode.hours + startTimecode.frames);
 
-        const endFrame = Math.floor(startTimecode.framerate * endTimecode.seconds + 1798 * endTimecode.minutes + 2 * Math.floor(endTimecode.minutes / 10) + 107892 * endTimecode.hours + endTimecode.frames);
+        let endFrame = Math.floor(startTimecode.framerate * endTimecode.seconds + 1798 * endTimecode.minutes + 2 * Math.floor(endTimecode.minutes / 10) + 107892 * endTimecode.hours + endTimecode.frames);
         if (startFrame > endFrame) {
-            alert("Start timecode must be less than or equal to end timecode.");
-            return;
+            endFrame += 107892*24;
+
         }
         // TODO: Input validation for CalculateDuration
         const frame_count = endFrame - startFrame;
+        console.log(frame_count);
         const h = Math.floor(frame_count / 107892);
         let hours = h % 24;
         let minutes = Math.floor(1 / 1800.00 * (frame_count + 2 * Math.floor((frame_count - (107892 * h)) / 1800.0) - 2 * Math.floor((frame_count - (107892 * h)) / 18000.0) - 107892 * h));
