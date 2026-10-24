@@ -22,7 +22,7 @@ function setEndCaret(index) {
   goodInput();
 }
 //further encapsulation of code.
-function startBackspace(index, caret) {
+function endBackspace(index, caret) {
   endValArr[index] = '0';
   setEndValue();
   setEndCaret(caret);
@@ -85,7 +85,7 @@ document.getElementById("end").addEventListener("keydown", e => {
         break;
       }
       if (e.key == "Backspace") {
-        startBackspace(0, index - 2);
+        endBackspace(0, index - 2);
         break;
       }
       if (endValArr[0] == '2') {
@@ -117,7 +117,7 @@ document.getElementById("end").addEventListener("keydown", e => {
         break;
       }
       if (e.key == "Backspace") {
-        startBackspace(1, index - 2);
+        endBackspace(1, index - 2);
         break;
       }
       if (zFArr.includes(e.key)) {
@@ -139,7 +139,7 @@ document.getElementById("end").addEventListener("keydown", e => {
         break;
       }
       if (e.key == "Backspace") {
-        startBackspace(1, index - 3);
+        endBackspace(1, index - 3);
         break;
       }
       if (zFArr.includes(e.key)) {
@@ -161,7 +161,7 @@ document.getElementById("end").addEventListener("keydown", e => {
         break;
       }
       if (e.key == "Backspace") {
-        startBackspace(3, index - 3);
+        endBackspace(3, index - 3);
         break;
       }
       if (numArr.includes(e.key)) {
@@ -183,7 +183,7 @@ document.getElementById("end").addEventListener("keydown", e => {
         break;
       }
       if (e.key == "Backspace") {
-        startBackspace(4, index - 2);
+        endBackspace(4, index - 2);
         break;
       }
       if (zFArr.includes(e.key)) {
@@ -205,7 +205,7 @@ document.getElementById("end").addEventListener("keydown", e => {
         break;
       }
       if (e.key == "Backspace") {
-        startBackspace(4, index - 3);
+        endBackspace(4, index - 3);
         break;
       }
       if (zFArr.includes(e.key)) {
@@ -227,7 +227,7 @@ document.getElementById("end").addEventListener("keydown", e => {
         break;
       }
       if (e.key == "Backspace") {
-        startBackspace(6, index - 3);
+        endBackspace(6, index - 3);
         break;
       }
       if (numArr.includes(e.key)) {
@@ -250,7 +250,7 @@ document.getElementById("end").addEventListener("keydown", e => {
         break;
       }
       if (e.key == "Backspace") {
-        startBackspace(7, index - 2);
+        endBackspace(7, index - 2);
         break;
       }
       if (zOArr.includes(e.key)) {
@@ -272,7 +272,7 @@ document.getElementById("end").addEventListener("keydown", e => {
         break;
       }
       if (e.key == "Backspace") {
-        startBackspace(7, index - 3);
+        endBackspace(7, index - 3);
         break;
       }
       if (zOArr.includes(e.key)) {
@@ -294,7 +294,7 @@ document.getElementById("end").addEventListener("keydown", e => {
         break;
       }
       if (e.key == "Backspace") {
-        startBackspace(9, index - 3);
+        endBackspace(9, index - 3);
         break;
       }
       if (endValArr[6] == 0 && endValArr[7] == 0 && endValArr[4] != 0) {
@@ -322,7 +322,7 @@ document.getElementById("end").addEventListener("keydown", e => {
         break;
       }
       if (e.key == "Backspace") {
-        startBackspace(10, index - 2);
+        endBackspace(10, index - 2);
         break;
       }
       badInput(); //would like to meld into next input maybe
