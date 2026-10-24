@@ -165,12 +165,12 @@ class DropFrame {
     }
     display() {
         let digits = new Intl.NumberFormat('en-US', {  minimumIntegerDigits: 2 });
-        console.log(`Duration: ${digits.format(this.hours)}:${digits.format(this.minutes)}:${digits.format(this.seconds)}:${digits.format(this.frames)}`);
+        console.log(`${digits.format(this.hours)}:${digits.format(this.minutes)}:${digits.format(this.seconds)}:${digits.format(this.frames)}`);
 
     }
     string() {
         let digits = new Intl.NumberFormat('en-US', {  minimumIntegerDigits: 2 });
-        return `Duration: ${digits.format(this.hours)}:${digits.format(this.minutes)}:${digits.format(this.seconds)}:${digits.format(this.frames)}`;
+        return `${digits.format(this.hours)}:${digits.format(this.minutes)}:${digits.format(this.seconds)}:${digits.format(this.frames)}`;
     }
 }
 

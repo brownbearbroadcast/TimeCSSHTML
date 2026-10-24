@@ -8,21 +8,25 @@ function flagSubmit(){
     bottomTimecode.display();
     console.log(flag);
   
-    if (flag == "Duration"){
+       if (flag == "Duration"){
     if (topTimecode.duration(topTimecode, bottomTimecode) == undefined) {
         return;
     }
     var resultant = topTimecode.duration(topTimecode, bottomTimecode);
-    }
-    if (flag == "Add"){
+    console.log(resultant);
+    document.getElementById("result").innerHTML = "Duration: " + resultant.string();
+  }
+    if (flag == "Addition"){
     var resultant = topTimecode.add(bottomTimecode);
-    }
-    if (flag == "Subtract"){
+    console.log(resultant);
+    document.getElementById("result").innerHTML = "Result: " + resultant.string();    
+  }
+    if (flag == "Subtraction"){
       if (topTimecode.subtract(bottomTimecode) == undefined) {
         return;
       }
-       var resultant = topTimecode.subtract(bottomTimecode);
+      var resultant = topTimecode.subtract(bottomTimecode);
+      console.log(resultant);
+      document.getElementById("result").innerHTML = "Result: " + resultant.string();
     }
-    console.log(resultant);
-    document.getElementById("result").innerHTML = resultant.string(new Intl.NumberFormat('en-US', {  minimumIntegerDigits: 2 }));
 }
