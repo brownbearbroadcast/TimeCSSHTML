@@ -166,7 +166,7 @@ document.getElementById("start").addEventListener("keydown", e => {
         break;
       }
       if (numArr.includes(e.key)) {
-          if(e.key != '0' && startValArr[9] == '0' && dFArr.includes(startValArr[10])){
+          if(e.key != '0' && (startValArr[6] == '0' && startValArr[7] == '0') && startValArr[9] == '0' && dFArr.includes(startValArr[10])){
           startValArr[10] = '2';
         }
         setStartValueAndCaret(4, e.key, index + 1);
