@@ -102,6 +102,7 @@ class DropFrame {
         let seconds = Math.floor(1 / 30 * (frame_count - 1798 * minutes - 2 * Math.floor(minutes / 10.0) - 107892 * h));
         console.log("seconds: " + seconds);
         let frames = Math.floor(frame_count - 30 * seconds - 1798 * minutes - 2 * Math.floor(minutes / 10.0) - 107892 * h);
+        // this should be impossible to reach, will test soon.
         if (minutes != 0 && minutes % 10 != 0 && seconds == 0) {
             switch (frames) {
                 case 0:
